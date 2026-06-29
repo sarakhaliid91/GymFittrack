@@ -90,7 +90,21 @@ export default function WorkoutsPage() {
           return (
             <div key={ex.id} className="bg-white rounded-xl p-4 shadow-sm">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="font-bold text-gray-800">{ex.nameAr}</h3>
+                <h3 className="font-bold text-gray-800 flex items-center gap-2">
+                  {ex.nameAr}
+                  {ex.videoUrl && (
+                    <a
+                      href={ex.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-red-500 hover:text-red-700"
+                      aria-label="شاهدي الفديو"
+                      title="شاهدي الفديو"
+                    >
+                      ▶️
+                    </a>
+                  )}
+                </h3>
                 <span className="text-xs text-gray-400">{ex.nameEn} • {ex.reps}</span>
               </div>
               <div className="flex gap-2 flex-wrap">

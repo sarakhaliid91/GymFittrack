@@ -48,6 +48,24 @@ export function deleteMeasurement(id: string) {
   save(MEASUREMENTS_KEY, getMeasurements().filter((m) => m.id !== id))
 }
 
+export function exportBackup(): string {
+  return JSON.stringify(
+    {
+      workoutLogs: getWorkoutLogs(),
+      measurements: getMeasurements(),
+      exportedAt: new Date().toISOString(),
+    },
+    null,
+    2,
+  )
+}
+
+export function importBackup(json: string) {
+  const parsed = JSON.parse(json) as { workoutLogs?: WorkoutLog[]; measurements?: Measurement[] }
+  if (Array.isArray(parsed.workoutLogs)) save(WORKOUTS_KEY, parsed.workoutLogs)
+  if (Array.isArray(parsed.measurements)) save(MEASUREMENTS_KEY, parsed.measurements)
+}
+
 export function todayIso(): string {
   const d = new Date()
   const offset = d.getTimezoneOffset()
