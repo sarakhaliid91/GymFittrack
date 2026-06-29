@@ -14,6 +14,7 @@ export interface Exercise {
   nameEn: string
   reps: string
   defaultEquipment: Equipment
+  videoUrl?: string
 }
 
 export interface Split {
